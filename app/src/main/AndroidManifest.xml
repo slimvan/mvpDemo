@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.xingyun.mvpdemo">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".MVPApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/google_plus"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon">
+        <meta-data
+            android:name="com.xingyun.mvpdemo.views.MyGlideModule"
+            android:value="GlideModule" />
+
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ui.activity.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.activity.RecyclerViewActivity" />
+        <activity
+            android:name=".ui.activity.MovieActivity"
+            android:theme="@style/TransitionTheme" />
+        <activity android:name=".ui.activity.BookActivity" />
+        <activity
+            android:name=".ui.activity.MovieDetailActivity"
+            android:theme="@style/TransitionTheme" />
+        <activity android:name=".ui.activity.BookDetailActivity"></activity>
+    </application>
+
+</manifest>
