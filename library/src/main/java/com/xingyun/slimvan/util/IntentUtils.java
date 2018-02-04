@@ -230,6 +230,19 @@ public final class IntentUtils {
         return intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_NEW_TASK);
     }
 
+    /**
+     * 获取跳转浏览器的意图
+     * @param url 跳转链接
+     * @return 浏览器意图
+     */
+    public static Intent getBrowserIntent(String url) {
+        Intent intent = new Intent();
+        intent.setAction("android.intent.action.VIEW");
+        Uri content_url = Uri.parse(url);
+        intent.setData(content_url);
+        return intent;
+    }
+
 //    /**
 //     * 获取选择照片的Intent
 //     *

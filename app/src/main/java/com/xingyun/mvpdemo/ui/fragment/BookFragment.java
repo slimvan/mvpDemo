@@ -23,7 +23,6 @@ import com.xingyun.mvpdemo.contract.BookListContract;
 import com.xingyun.mvpdemo.model.BookList;
 import com.xingyun.mvpdemo.presenter.BookListPresenter;
 import com.xingyun.mvpdemo.ui.activity.BookDetailActivity;
-import com.xingyun.mvpdemo.ui.activity.MovieDetailActivity;
 import com.xingyun.mvpdemo.ui.adapter.BookListAdapter;
 import com.xingyun.slimvan.util.DeviceUtils;
 import com.xingyun.slimvan.view.lazyviewpager.LazyFragmentPagerAdapter;
@@ -38,7 +37,7 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BookFragment extends BaseFragment implements BookListContract.View ,LazyFragmentPagerAdapter.Laziable{
+public class BookFragment extends BaseFragment implements BookListContract.View, LazyFragmentPagerAdapter.Laziable {
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -105,6 +104,7 @@ public class BookFragment extends BaseFragment implements BookListContract.View 
         mBookListAdapter = new BookListAdapter(datas);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
         recyclerView.setAdapter(mBookListAdapter);
+        mBookListAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_BOTTOM);
 
         mBookListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
@@ -116,7 +116,7 @@ public class BookFragment extends BaseFragment implements BookListContract.View 
                         String bookId = booksBean.getId();
                         Intent intent = new Intent(getContext(), BookDetailActivity.class);
                         intent.putExtra(Constants.EXTRA_ID, bookId);
-                        intent.putExtra(Constants.EXTRA_BOOK_BEAN,booksBean);
+                        intent.putExtra(Constants.EXTRA_BOOK_BEAN, booksBean);
                         if (DeviceUtils.isMoreThanLOLLIPOP()) {
                             Bundle options = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
                                     view.findViewById(R.id.iv_icon),
@@ -129,6 +129,13 @@ public class BookFragment extends BaseFragment implements BookListContract.View 
                 }
             }
         });
+
+        mBookListAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+            @Override
+            public void onLoadMoreRequested() {
+                mPresenter.loadMore(mTag);
+            }
+        }, recyclerView);
     }
 
 
@@ -162,8 +169,19 @@ public class BookFragment extends BaseFragment implements BookListContract.View 
     }
 
     @Override
-    public void onLoadMoreSuccess() {
+    public void onLoadMoreSuccess(BookList bookList) {
+        if (bookList != null) {
+            List<BookList.BooksBean> books = bookList.getBooks();
+            if (books != null) {
+                mBookListAdapter.addData(books);
+                mBookListAdapter.loadMoreComplete();
+            }
+        }
+    }
 
+    @Override
+    public void onLoadMoreFail() {
+        mBookListAdapter.loadMoreFail();
     }
 
     @Override

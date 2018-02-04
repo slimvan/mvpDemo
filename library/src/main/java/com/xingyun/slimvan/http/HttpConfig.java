@@ -16,4 +16,6 @@ public class HttpConfig {
 
     public static String GANK_BASE_URL = "http://gank.io/api/data/";
 
+    public static String HUPU_URL = "http://bbs.mobileapi.hupu.com/1/7.0.8/";
+
 }

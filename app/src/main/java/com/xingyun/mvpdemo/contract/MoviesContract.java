@@ -15,14 +15,17 @@ public class MoviesContract {
     public interface View extends BaseView {
         void onLoadSuccess(HotMovieList bookList);
 
-        void onLoadMoreSuccess();
-
         void onLoadFail();
+
+        void onLoadMoreSuccess(HotMovieList hotMovieList);
+
+        void onLoadMoreFail();
+
     }
 
     public interface Presenter {
         void refresh(String tag);
 
-        void loadMore();
+        void loadMore(String tag);
     }
 }

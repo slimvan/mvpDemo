@@ -41,7 +41,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         super.onCreate(savedInstanceState);
 
         String userName = new SPUtils(Constants.SP_BASE_NAME).getString(Constants.SP_USER_NAME);
-        if (TextUtils.isEmpty(userName)) {
+        if (!TextUtils.isEmpty(userName)) {
             startActivity(new Intent(getContext(), MainActivity.class));
             finish();
         }
@@ -89,6 +89,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
         new SPUtils(Constants.SP_BASE_NAME).put(Constants.SP_USER_NAME, "slimvan");
         startActivity(new Intent(getContext(), MainActivity.class));
+        finish();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.xingyun.mvpdemo;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -19,9 +20,13 @@ import android.widget.Toast;
 
 import com.xingyun.mvpdemo.base.BaseActivity;
 import com.xingyun.mvpdemo.ui.activity.BookActivity;
+import com.xingyun.mvpdemo.ui.activity.ForumActivity;
+import com.xingyun.mvpdemo.ui.activity.LoginActivity;
 import com.xingyun.mvpdemo.ui.activity.MovieActivity;
 import com.xingyun.mvpdemo.ui.activity.RecyclerViewActivity;
 import com.xingyun.mvpdemo.ui.fragment.FirstFragment;
+import com.xingyun.slimvan.util.IntentUtils;
+import com.xingyun.slimvan.util.SPUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,18 +97,24 @@ public class MainActivity extends BaseActivity {
                                 startActivity(intent);
                                 break;
                             case R.id.menu_item_4:
+                                intent = new Intent(getContext(), ForumActivity.class);
+                                startActivity(intent);
                                 break;
                             case R.id.menu_item_5:
                                 break;
-                            case R.id.menu_item_6:
+                            case R.id.menu_share_app:
+                                intent = IntentUtils.getBrowserIntent(Constants.APP_SHARE_URL);
+                                startActivity(intent);
                                 break;
-                            case R.id.menu_item_7:
-                                break;
-                            case R.id.menu_item_8:
+                            case R.id.menu_logout:
+                                new SPUtils(Constants.SP_BASE_NAME).put(Constants.SP_USER_NAME, "");
+                                intent = new Intent(getContext(), LoginActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
                                 break;
                         }
                     }
-                },300);
+                }, 300);
                 return true;
             }
         });

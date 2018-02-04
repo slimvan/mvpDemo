@@ -23,6 +23,8 @@ import rx.schedulers.Schedulers;
 
 public class MoviesPresenter extends BasePresenter<MoviesContract.View> implements MoviesContract.Presenter {
     private Context mContext;
+    private int pageSize = 20;
+    private int currentPage = 1;
 
     public MoviesPresenter(Context mContext) {
         this.mContext = mContext;
@@ -30,15 +32,16 @@ public class MoviesPresenter extends BasePresenter<MoviesContract.View> implemen
 
     @Override
     public void refresh(String tag) {
+        currentPage = 1; //第一页
         DoubanApi doubanApi = RetrofitBuilder.build(DoubanApi.class);
         String[] titles = mContext.getResources().getStringArray(R.array.movie_sort_list);
         Observable observable = null;
         if (titles[0].equals(tag)) {
             observable = doubanApi.movieListHot(tag);
         } else if (titles[1].equals(tag)) {
-            observable = doubanApi.movieListCommingSoon(0, 20);
+            observable = doubanApi.movieListCommingSoon(0, pageSize);
         } else if (titles[2].equals(tag)) {
-            observable = doubanApi.movieListTop250(0, 20);
+            observable = doubanApi.movieListTop250(0, pageSize);
         }
 
         observable.subscribeOn(Schedulers.io())
@@ -58,7 +61,32 @@ public class MoviesPresenter extends BasePresenter<MoviesContract.View> implemen
     }
 
     @Override
-    public void loadMore() {
+    public void loadMore(String tag) {
+        DoubanApi doubanApi = RetrofitBuilder.build(DoubanApi.class);
+        String[] titles = mContext.getResources().getStringArray(R.array.movie_sort_list);
+        Observable observable = null;
+        if (titles[0].equals(tag)) {
+            observable = doubanApi.movieListHot(tag);
+        } else if (titles[1].equals(tag)) {
+            observable = doubanApi.movieListCommingSoon((currentPage + 1) * pageSize - pageSize, pageSize);
+        } else if (titles[2].equals(tag)) {
+            observable = doubanApi.movieListTop250((currentPage + 1) * pageSize - pageSize, pageSize);
+        }
 
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new MSubscriber<HotMovieList>(mContext, false, true) {
+                    @Override
+                    public void onSuccess(HotMovieList hotMovieList) {
+                        getView().onLoadMoreSuccess(hotMovieList);
+                        currentPage++;
+                    }
+
+                    @Override
+                    public void errorCallBack(Throwable e) {
+                        getView().onLoadMoreFail();
+                        e.printStackTrace();
+                    }
+                });
     }
 }

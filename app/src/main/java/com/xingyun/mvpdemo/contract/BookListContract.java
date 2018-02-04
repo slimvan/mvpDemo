@@ -14,11 +14,12 @@ public class BookListContract {
     public interface View extends BaseView{
         void onLoadSuccess(BookList bookList);
         void onLoadFail();
-        void onLoadMoreSuccess();
+        void onLoadMoreSuccess(BookList bookList);
+        void onLoadMoreFail();
     }
 
     public interface Presenter{
         void refresh(String tag);
-        void loadMore();
+        void loadMore(String tag);
     }
 }
