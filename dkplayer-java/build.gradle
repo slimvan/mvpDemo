@@ -1,0 +1,24 @@
+apply plugin: 'com.android.library'
+group='com.github.dueeeke'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+dependencies {
+    compile 'com.android.support:appcompat-v7:25.0.0'
+    compile "tv.danmaku.ijk.media:ijkplayer-java:0.8.8"
+    compile 'com.danikula:videocache:2.7.0'
+}

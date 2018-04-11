@@ -25,6 +25,7 @@ import com.xingyun.mvpdemo.ui.activity.LoginActivity;
 import com.xingyun.mvpdemo.ui.activity.MovieActivity;
 import com.xingyun.mvpdemo.ui.activity.RecyclerViewActivity;
 import com.xingyun.mvpdemo.ui.fragment.FirstFragment;
+import com.xingyun.mvpdemo.ui.fragment.VideoFragment;
 import com.xingyun.slimvan.util.IntentUtils;
 import com.xingyun.slimvan.util.SPUtils;
 
@@ -121,15 +122,18 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initViewPager() {
+        final List<String> sortIds = new ArrayList<>();
         final List<String> titles = new ArrayList<>();
-        titles.add("页签1");
-        titles.add("页签2");
-        titles.add("页签3");
-
+        titles.add("数字调音台");
+        titles.add("模拟调音台");
+        titles.add("快速上手");
+        sortIds.add("13");
+        sortIds.add("15");
+        sortIds.add("14");
         FragmentStatePagerAdapter adapter = new FragmentStatePagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
-                return FirstFragment.getInstance();
+                return VideoFragment.getInstance(sortIds.get(position));
             }
 
             @Override

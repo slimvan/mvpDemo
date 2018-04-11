@@ -10,9 +10,12 @@ import com.xingyun.slimvan.util.Utils;
  */
 
 public class MVPApplication extends Application {
+    private static MVPApplication instance;
+
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this;
 
         init();
     }
@@ -20,5 +23,9 @@ public class MVPApplication extends Application {
     private void init() {
         BaseLibrary.init(getApplicationContext());
         Utils.init(getApplicationContext());
+    }
+
+    public static MVPApplication getInstance() {
+        return instance;
     }
 }

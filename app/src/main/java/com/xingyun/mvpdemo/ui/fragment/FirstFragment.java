@@ -1,6 +1,7 @@
 package com.xingyun.mvpdemo.ui.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -17,6 +18,7 @@ import com.xingyun.mvpdemo.R;
 import com.xingyun.mvpdemo.base.BaseFragment;
 import com.xingyun.mvpdemo.contract.FirstContract;
 import com.xingyun.mvpdemo.presenter.FirstPresenter;
+import com.xingyun.mvpdemo.ui.activity.IJKPlayerActivity;
 import com.xingyun.mvpdemo.ui.adapter.FirstListAdapter;
 import com.xingyun.slimvan.util.ToastUtils;
 
@@ -80,7 +82,9 @@ public class FirstFragment extends BaseFragment implements FirstContract.View {
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                ToastUtils.showShort("" + position);
+//                ToastUtils.showShort("" + position);
+                Intent intent = new Intent(getContext(), IJKPlayerActivity.class);
+                startActivity(intent);
             }
         });
         mAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {

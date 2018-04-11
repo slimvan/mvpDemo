@@ -42,7 +42,11 @@
         <activity android:name=".ui.activity.BookDetailActivity" />
         <activity android:name=".ui.activity.ForumActivity" />
         <activity android:name=".ui.activity.ForumDetailActivity" />
-        <activity android:name=".ui.activity.WebViewActivity"></activity>
+        <activity android:name=".ui.activity.WebViewActivity" />
+        <activity
+            android:name=".ui.activity.IJKPlayerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
