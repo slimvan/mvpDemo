@@ -23,6 +23,7 @@ import com.xingyun.mvpdemo.ui.activity.BookActivity;
 import com.xingyun.mvpdemo.ui.activity.ForumActivity;
 import com.xingyun.mvpdemo.ui.activity.LoginActivity;
 import com.xingyun.mvpdemo.ui.activity.MovieActivity;
+import com.xingyun.mvpdemo.ui.activity.MusicActivity;
 import com.xingyun.mvpdemo.ui.activity.RecyclerViewActivity;
 import com.xingyun.mvpdemo.ui.fragment.FirstFragment;
 import com.xingyun.mvpdemo.ui.fragment.VideoFragment;
@@ -102,6 +103,8 @@ public class MainActivity extends BaseActivity {
                                 startActivity(intent);
                                 break;
                             case R.id.menu_item_5:
+                                intent = new Intent(getContext(), MusicActivity.class);
+                                startActivity(intent);
                                 break;
                             case R.id.menu_share_app:
                                 intent = IntentUtils.getBrowserIntent(Constants.APP_SHARE_URL);

@@ -24,6 +24,24 @@
         <item>Top250</item>
     </string-array>
 
+    <string-array name="music_sort_list">
+        <item>新歌榜</item>
+        <item>热歌榜</item>
+        <item>摇滚榜</item>
+        <item>欧美金曲榜</item>
+        <item>经典老歌榜</item>
+        <item>情歌对唱榜</item>
+    </string-array>
+
+    <string-array name="music_sort_type_list">
+        <item>1</item>
+        <item>2</item>
+        <item>11</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+    </string-array>
+
 
     <!--ijkplayer-->
     <string name="N_A">N/A</string>

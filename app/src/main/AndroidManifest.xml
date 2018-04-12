@@ -47,6 +47,7 @@
             android:name=".ui.activity.IJKPlayerActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.MusicActivity"></activity>
     </application>
 
 </manifest>

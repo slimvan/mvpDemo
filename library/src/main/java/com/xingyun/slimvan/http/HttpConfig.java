@@ -19,4 +19,6 @@ public class HttpConfig {
     public static String HUPU_URL = "http://bbs.mobileapi.hupu.com/1/7.0.8/";
 
     public static String YAMAHA_URL = "https://yamaha.xingyun.net/";
+
+    public static String BAIDU_MUSIC_URL = "http://tingapi.ting.baidu.com/v1/";
 }

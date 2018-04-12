@@ -24,5 +24,8 @@ public class Constants {
     public static final String HUPU_BBS_SORT_TYPE_NEW = "1"; //最新的帖子
 
     public static final String EXTRA_URL = "url";
+
+    public static final String BAIDU_API_METHOD_MUSIC_LIST = "baidu.ting.billboard.billList";
+    public static final String BAIDU_API_METHOD_MUSIC_DETAIL = "baidu.ting.song.play";
 }
 
