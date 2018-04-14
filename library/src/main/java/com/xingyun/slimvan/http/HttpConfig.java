@@ -7,6 +7,7 @@ public class HttpConfig {
 
     public static final String TAG = "okHttpLog";
 
+
     /**
      * 接口加密开关
      */
@@ -21,4 +22,6 @@ public class HttpConfig {
     public static String YAMAHA_URL = "https://yamaha.xingyun.net/";
 
     public static String BAIDU_MUSIC_URL = "http://tingapi.ting.baidu.com/v1/";
+
+    public static String HEFENG_WEATHER_URL = "https://free-api.heweather.com/s6/";
 }

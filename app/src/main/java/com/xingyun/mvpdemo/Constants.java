@@ -10,6 +10,8 @@ package com.xingyun.mvpdemo;
 public class Constants {
     public static final String APP_SHARE_URL = "https://www.pgyer.com/slimvan";
     public static final String HUPU_SIGN = "HUPU_SALT_AKJfoiwer394Jeiow4u309";
+    public static final String HEFENG_USER_NAME = "HE1804131610451197";
+    public static final String HEFENG_SECREAT_KEY = "4f02b6ae2ca04b358a46a186db833b4c";
 
     public static final String SP_BASE_NAME = "SP_BASE_NAME";
     public static final String SP_USER_NAME = "SP_USER_NAME";

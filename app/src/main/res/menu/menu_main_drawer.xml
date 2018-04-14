@@ -2,10 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/menu_item_1"
-            android:icon="@mipmap/icon_1"
-            android:title="RecyclerViewActivity" />
+
         <item
             android:id="@+id/menu_item_2"
             android:icon="@mipmap/icon_2"
@@ -22,6 +19,10 @@
             android:id="@+id/menu_item_5"
             android:icon="@mipmap/icon_5"
             android:title="音乐" />
+        <item
+            android:id="@+id/menu_item_1"
+            android:icon="@mipmap/icon_1"
+            android:title="MPAndroidChart" />
 
     </group>
 
