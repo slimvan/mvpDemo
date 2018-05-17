@@ -4,21 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:context="com.xingyun.mvpdemo.ui.activity.MovieDetailActivity">
+
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar_scrolling"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:titleEnabled="false">
@@ -30,7 +28,7 @@
                 <ImageView
                     android:id="@+id/image_scrolling_top"
                     android:layout_width="match_parent"
-                    android:layout_height="260dp"
+                    android:layout_height="match_parent"
                     android:fitsSystemWindows="true"
                     android:scaleType="fitXY"
                     android:src="@mipmap/stackblur_default"
@@ -39,10 +37,12 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="15dp"
                     android:gravity="center|center_horizontal"
                     android:orientation="horizontal"
-                    android:padding="30dp">
+                    android:paddingBottom="30dp"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    android:paddingTop="55dp">
 
                     <ImageView
                         android:id="@+id/iv_icon"
@@ -161,8 +161,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
+                app:layout_collapseMode="pin" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
@@ -218,7 +217,6 @@
         android:src="@mipmap/ic_heart"
         app:layout_anchor="@id/app_bar_scrolling"
         app:layout_anchorGravity="end|bottom" />
-
 
 </android.support.design.widget.CoordinatorLayout>
 

@@ -29,12 +29,12 @@ public class BookListPresenter extends BasePresenter<BookListContract.View> impl
     }
 
     @Override
-    public void refresh(String tag) {
+    public void refresh(String tag, boolean loadingFlag) {
         RetrofitBuilder.build(DoubanApi.class)
                 .bookList(tag, 0, 21)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MSubscriber<BookList>(mContext, true, true) {
+                .subscribe(new MSubscriber<BookList>(mContext, loadingFlag, false) {
                     @Override
                     public void onSuccess(BookList bookList) {
                         getView().onLoadSuccess(bookList);

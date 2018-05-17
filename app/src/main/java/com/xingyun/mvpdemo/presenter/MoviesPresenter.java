@@ -31,7 +31,7 @@ public class MoviesPresenter extends BasePresenter<MoviesContract.View> implemen
     }
 
     @Override
-    public void refresh(String tag) {
+    public void refresh(String tag,boolean loadingFlag) {
         currentPage = 1; //第一页
         DoubanApi doubanApi = RetrofitBuilder.build(DoubanApi.class);
         String[] titles = mContext.getResources().getStringArray(R.array.movie_sort_list);
@@ -46,7 +46,7 @@ public class MoviesPresenter extends BasePresenter<MoviesContract.View> implemen
 
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MSubscriber<HotMovieList>(mContext, true, true) {
+                .subscribe(new MSubscriber<HotMovieList>(mContext, loadingFlag, true) {
                     @Override
                     public void onSuccess(HotMovieList hotMovieList) {
                         getView().onLoadSuccess(hotMovieList);

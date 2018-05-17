@@ -24,7 +24,7 @@ public class MoviesContract {
     }
 
     public interface Presenter {
-        void refresh(String tag);
+        void refresh(String tag,boolean loadingFlag);
 
         void loadMore(String tag);
     }

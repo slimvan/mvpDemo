@@ -1,8 +1,6 @@
 package com.xingyun.mvpdemo.ui.activity;
 
 import android.content.res.ColorStateList;
-import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -10,11 +8,10 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.transition.Explode;
+import android.util.TypedValue;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewTreeObserver;
-import android.view.Window;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,6 +21,7 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.gyf.barlibrary.ImmersionBar;
 import com.xingyun.mvpdemo.Constants;
 import com.xingyun.mvpdemo.R;
 import com.xingyun.mvpdemo.base.BaseActivity;
@@ -32,11 +30,8 @@ import com.xingyun.mvpdemo.model.HotMovieList;
 import com.xingyun.mvpdemo.model.MovieDetailBean;
 import com.xingyun.mvpdemo.presenter.MovieDetailPresenter;
 import com.xingyun.mvpdemo.util.StringFormatUtil;
-import com.xingyun.mvpdemo.views.widget.FlowLikeView;
 import com.xingyun.slimvan.util.DeviceUtils;
-import com.xingyun.slimvan.util.ImageUtils;
-import com.xingyun.slimvan.util.SnackbarUtils;
-import com.xingyun.slimvan.util.ToastUtils;
+import com.xingyun.slimvan.util.LogUtils;
 
 import java.util.List;
 
@@ -88,6 +83,9 @@ public class MovieDetailActivity extends BaseActivity implements MovieDetailCont
         setContentView(R.layout.activity_movie_detail);
         ButterKnife.bind(this);
 
+        ImmersionBar.with(this).titleBar(toolbar).init();
+        setStatusBarSwitch(false); //屏蔽基类的状态栏处理
+
         if (DeviceUtils.isMoreThanLOLLIPOP()) {
             postponeEnterTransition();
         }
@@ -105,7 +103,9 @@ public class MovieDetailActivity extends BaseActivity implements MovieDetailCont
         initToolBar(toolbar);
         setSupportActionBar(toolbar);
         mPresenter.initData(movieId);
+
     }
+
 
     /**
      * 设置基本信息  界面传值

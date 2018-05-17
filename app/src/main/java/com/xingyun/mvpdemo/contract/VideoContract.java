@@ -20,7 +20,7 @@ public class VideoContract {
     }
 
     public interface Presenter{
-        void refresh(String sort_id);
+        void refresh(String sort_id,boolean loadingFlag);
         void loadMore();
     }
 

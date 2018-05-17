@@ -33,7 +33,7 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class VideoFragment extends BaseFragment implements VideoContract.View ,LazyFragmentPagerAdapter.Laziable{
+public class VideoFragment extends BaseFragment implements VideoContract.View, LazyFragmentPagerAdapter.Laziable {
 
 
     @BindView(R.id.recyclerView)
@@ -83,7 +83,7 @@ public class VideoFragment extends BaseFragment implements VideoContract.View ,L
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mPresenter.refresh(sort_id);
+        mPresenter.refresh(sort_id, true);
     }
 
 
@@ -102,7 +102,7 @@ public class VideoFragment extends BaseFragment implements VideoContract.View ,L
                     String video_url = mAdapter.getData().get(position).getVideo_url();
                     Intent intent = new Intent(getContext(), IJKPlayerActivity.class);
                     intent.putExtra("url", video_url);
-                    intent.putExtra("sort_id",sort_id);
+                    intent.putExtra("sort_id", sort_id);
                     startActivity(intent);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -119,7 +119,7 @@ public class VideoFragment extends BaseFragment implements VideoContract.View ,L
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mPresenter.refresh(sort_id);
+                mPresenter.refresh(sort_id, false);
             }
         });
     }

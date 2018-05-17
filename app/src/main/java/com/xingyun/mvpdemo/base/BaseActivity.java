@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.xingyun.mvpdemo.R;
 import com.xingyun.mvpdemo.interf.LoadingCancelListener;
 
@@ -23,6 +24,11 @@ import java.lang.ref.WeakReference;
 public abstract class BaseActivity extends AppCompatActivity {
     protected WeakReference<Activity> mContext = null;//弱引用
     private AlertDialog mLoadingDialog = null;
+    protected boolean statusBarSwitch = true;
+
+    public void setStatusBarSwitch(boolean statusBarSwitch) {
+        this.statusBarSwitch = statusBarSwitch;
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -86,6 +92,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        if (statusBarSwitch) {
+            ImmersionBar.with(this).statusBarColor(R.color.colorPrimary).fitsSystemWindows(true).init();
+        }
     }
 
     @Override

@@ -86,7 +86,7 @@ public class BookFragment extends BaseFragment implements BookListContract.View,
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mPresenter.refresh(mTag);
+        mPresenter.refresh(mTag, true);
     }
 
     private void initRefreshLayout() {
@@ -94,7 +94,7 @@ public class BookFragment extends BaseFragment implements BookListContract.View,
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mPresenter.refresh(mTag);
+                mPresenter.refresh(mTag, false);
             }
         });
     }

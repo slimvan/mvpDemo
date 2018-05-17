@@ -74,7 +74,7 @@ public class MoviesFragment extends BaseFragment implements MoviesContract.View,
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mPresenter.refresh(mTag);
+        mPresenter.refresh(mTag, true);
         initRefreshLayout();
         initRecyclerView();
     }
@@ -128,7 +128,7 @@ public class MoviesFragment extends BaseFragment implements MoviesContract.View,
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mPresenter.refresh(mTag);
+                mPresenter.refresh(mTag, false);
             }
         });
     }

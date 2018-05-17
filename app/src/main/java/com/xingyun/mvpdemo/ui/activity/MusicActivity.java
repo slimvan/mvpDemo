@@ -4,14 +4,15 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.gyf.barlibrary.ImmersionBar;
 import com.xingyun.mvpdemo.R;
 import com.xingyun.mvpdemo.base.BaseActivity;
 import com.xingyun.mvpdemo.contract.MusicContract;
@@ -19,6 +20,7 @@ import com.xingyun.mvpdemo.model.MusicDetailBean;
 import com.xingyun.mvpdemo.model.MusicListBean;
 import com.xingyun.mvpdemo.presenter.MusicPresenter;
 import com.xingyun.mvpdemo.ui.fragment.MusicFragment;
+import com.xingyun.mvpdemo.views.AppBarStateChangeListener;
 import com.xingyun.slimvan.view.lazyviewpager.LazyFragmentPagerAdapter;
 import com.xingyun.slimvan.view.lazyviewpager.LazyViewPager;
 
@@ -45,6 +47,8 @@ public class MusicActivity extends BaseActivity implements MusicContract.View {
     TextView tvLastUpdate;
     @BindView(R.id.iv_bg)
     ImageView ivBg;
+    @BindView(R.id.app_bar_layout)
+    AppBarLayout appBarLayout;
 
     private IjkMediaPlayer mIjkMediaPlayer;
     private MusicPresenter mPresenter;
@@ -60,6 +64,9 @@ public class MusicActivity extends BaseActivity implements MusicContract.View {
         setContentView(R.layout.activity_music);
         ButterKnife.bind(this);
 
+        ImmersionBar.with(this).titleBar(toolbar).init();
+        setStatusBarSwitch(false); //屏蔽基类的状态栏处理
+
         mIjkMediaPlayer = new IjkMediaPlayer();
         mPresenter = new MusicPresenter(getContext());
         mPresenter.attachView(this);
@@ -72,7 +79,26 @@ public class MusicActivity extends BaseActivity implements MusicContract.View {
         initToolBar(toolbar);
         setSupportActionBar(toolbar);
         initViewPager();
+
+        appBarLayout.addOnOffsetChangedListener(new AppBarStateChangeListener() {
+            @Override
+            public void onStateChanged(AppBarLayout appBarLayout, State state) {
+                Log.d("STATE", state.name());
+                if (state == State.EXPANDED) {
+                    //展开状态
+                    tabLayout.setFitsSystemWindows(false);
+                } else if (state == State.COLLAPSED) {
+                    //折叠状态
+                    tabLayout.setFitsSystemWindows(true);
+                } else {
+                    //中间状态
+                    tabLayout.setFitsSystemWindows(false);
+                }
+                tabLayout.invalidate();
+            }
+        });
     }
+
 
     private void initViewPager() {
         final String[] titles = getResources().getStringArray(R.array.music_sort_list);

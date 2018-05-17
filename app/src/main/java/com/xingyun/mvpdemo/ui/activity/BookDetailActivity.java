@@ -16,6 +16,7 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.gyf.barlibrary.ImmersionBar;
 import com.xingyun.mvpdemo.Constants;
 import com.xingyun.mvpdemo.R;
 import com.xingyun.mvpdemo.base.BaseActivity;
@@ -70,6 +71,9 @@ public class BookDetailActivity extends BaseActivity implements BookDetailContra
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_detail);
         ButterKnife.bind(this);
+
+        ImmersionBar.with(this).titleBar(toolbar).init();
+        setStatusBarSwitch(false); //屏蔽基类的状态栏处理
 
         if (DeviceUtils.isMoreThanLOLLIPOP()) {
             postponeEnterTransition();

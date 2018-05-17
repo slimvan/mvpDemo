@@ -10,6 +10,8 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.dueeeke.videoplayer.controller.StandardVideoController;
 import com.dueeeke.videoplayer.player.IjkVideoView;
 import com.dueeeke.videoplayer.player.PlayerConfig;
+import com.gyf.barlibrary.BarHide;
+import com.gyf.barlibrary.ImmersionBar;
 import com.xingyun.mvpdemo.R;
 import com.xingyun.mvpdemo.base.BaseActivity;
 import com.xingyun.mvpdemo.contract.VideoContract;
@@ -43,6 +45,8 @@ public class IJKPlayerActivity extends BaseActivity implements VideoContract.Vie
         setContentView(R.layout.activity_ijkplayer);
         ButterKnife.bind(this);
 
+        setStatusBarSwitch(false);
+
         String url = getIntent().getStringExtra("url");
         String sort_id = getIntent().getStringExtra("sort_id");
 
@@ -50,7 +54,7 @@ public class IJKPlayerActivity extends BaseActivity implements VideoContract.Vie
         mPresenter.attachView(this);
         initRecyclerView();
         initPlayer(url);
-        mPresenter.refresh(sort_id);
+        mPresenter.refresh(sort_id, false);
     }
 
     /**

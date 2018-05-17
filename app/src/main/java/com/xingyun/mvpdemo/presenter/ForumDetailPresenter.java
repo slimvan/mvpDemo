@@ -60,7 +60,7 @@ public class ForumDetailPresenter extends BasePresenter<ForumDetailContract.View
                 .getBBSList(sign, params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MSubscriber<String>(mContext, true, true) {
+                .subscribe(new MSubscriber<String>(mContext, false, false) {
                     @Override
                     public void onSuccess(String str) {
                         String desStr = ThreeDESUtil.decodeUnicode(str);
@@ -136,7 +136,7 @@ public class ForumDetailPresenter extends BasePresenter<ForumDetailContract.View
                 .getAttentionStatus(sign, params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MSubscriber<String>(mContext, true, true) {
+                .subscribe(new MSubscriber<String>(mContext, false, false) {
                     @Override
                     public void onSuccess(String str) {
                         String desStr = ThreeDESUtil.decodeUnicode(str);

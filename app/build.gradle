@@ -52,4 +52,5 @@ dependencies {
     //图表库
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.3'
     compile files('libs/base64.jar')
+    compile 'com.gyf.barlibrary:barlibrary:2.3.0'
 }

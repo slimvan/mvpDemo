@@ -30,12 +30,12 @@ public class VideoPresenter extends BasePresenter<VideoContract.View> implements
     }
 
     @Override
-    public void refresh(String sort_id) {
+    public void refresh(String sort_id,boolean loadingFlag) {
         RetrofitBuilder.build(YamahaApi.class, HttpConfig.YAMAHA_URL)
                 .videoList(sort_id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MSubscriber<VideoListBean>(mContext, true, true){
+                .subscribe(new MSubscriber<VideoListBean>(mContext, loadingFlag, false){
                     @Override
                     public void onSuccess(VideoListBean videoListBean) {
                         List<VideoListBean.ArticleListBean> article_list = videoListBean.getArticle_list();
